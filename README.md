@@ -59,6 +59,7 @@ Before running, make sure that the package is located in GOPATH and the input pa
 The main package consists of the following files:
 
 * main.go
+* shortestPath.go
 * heuristic.go
 * helper.go
 * io.go
@@ -66,7 +67,7 @@ The main package consists of the following files:
 * queue.go
 * test.go
 
-The core functions are implemented in **main.go**, ```findShortestPath``` being the most important one, as the logic for both algorithms  is located in it.
+The core functions are implemented in **shortestPath.go**, ```findShortestPath``` being the most important one, as the logic for both algorithms  is located in it.
 
 ```
 func findShortestPath(start, finish int, algorithm string) { ... }
@@ -76,7 +77,8 @@ It takes either **“dijkstra”** or **“astar”** as its final argument, whe
 
 Other files include: 
 
-* **heuristic.go** which implements the heuristic function and finds euclidean distance between the starting and ending cells.
+* **main.go** brings all the children together
+* **heuristic.go** implements the heuristic function and finds euclidean distance between the starting and ending cells.
 * **helper.go** includes helper functions (memset, printReverse, etc) to ease computation in other files.
 * **io.go** functions take care of input and output operations.
 * **edge.go** implements the Edge type with  to int and  distance float64 fields.
