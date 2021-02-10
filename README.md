@@ -66,6 +66,7 @@ The main package consists of the following files:
 * edge.go
 * queue.go
 * test.go
+* global.go
 
 The core functions are implemented in **shortestPath.go**, ```findShortestPath``` being the most important one, as the logic for both algorithms  is located in it.
 
@@ -84,6 +85,7 @@ Other files include:
 * **edge.go** implements the Edge type with  to int and  distance float64 fields.
 * **queue.go** uses the priority queue implementation library from https://programmer.help/blogs/simple-priority-queue-implemented-by-golang.html
 * **test.go** implements the function for displaying all shortest path combinations. The result of the output files is achieved with its help.
+* **global.go** stores global declarations
 
 ### Heuristic
 Heuristic function calculates the **euclidean distance** between vertices. After which, further normalization allows us to achieve better efficiency of A star over Dijkstra without overestimation.
