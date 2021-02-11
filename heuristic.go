@@ -38,8 +38,11 @@ func heuristic(start, finish int) float64 {
 	startCell := vertexGraph[start]
 	finishCell := vertexGraph[finish]
 
-	// if it is the same cell euclidean = 0
+	// if it is the same cell, euclidean = 0
 	if start == finish { return euclidean }
+
+	// if are in the same cell, approximating the distance
+	if startCell == finishCell { return CELLSIZE / 10.0 }
 
 	// finding cell locations relative to vertex zero
 	startLocX, startLocY = location(startCell)
