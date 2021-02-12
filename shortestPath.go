@@ -19,22 +19,30 @@ func buildPath(start, finish int) []int {
 func findShortestPath(start, finish int, algorithm string) {
 	// resetting previous values
 	reset()
-	// initializing heuristic cost to zero
+
+	// declaring costs
+	var fCost float64
+	var gCost float64
 	var hCost float64
+
+	// declaring other variables
+	var currentVertex, to int
+	var edge Edge
+
 	// initializing priority queue
 	queue := NewPriorityQueue()
 	queue.Push(Edge{start, 0})
 	dist[start] = 0
 
-	// implementing dijkstra / A*
+	// while queue is not empty
 	for queue.Length() > 0 {
 		// increasing visit count
 		visitCount++
 
 		// getting the current edge and vertex
-		edge := queue.Front().(Edge)
+		edge = queue.Front().(Edge)
 		queue.Pop() // dequeue
-		currentVertex := edge.to
+		currentVertex = edge.to
 
 		// terminating search when reaching goal
 		if currentVertex == finish { break }
@@ -42,9 +50,9 @@ func findShortestPath(start, finish int, algorithm string) {
 		// iterating through all the vertices that we can reach from current vertex
 		for i := 0; i < len(edgeGraph[currentVertex]); i++ {
 			// getting the next connected vertex
-			to := edgeGraph[currentVertex][i].to
+			to = edgeGraph[currentVertex][i].to
 			// calculating gCost
-			gCost := dist[currentVertex] + edgeGraph[currentVertex][i].distance
+			gCost = dist[currentVertex] + edgeGraph[currentVertex][i].distance
 
 			// relaxing the edge if needed
 			if gCost < dist[to] {
@@ -53,7 +61,7 @@ func findShortestPath(start, finish int, algorithm string) {
 				// setting heuristic in case of A*
 				if algorithm == "astar" { hCost = heuristic(to, finish) }
 				// calculating fCost (hCost is zero in case of dijkstra)
-				fCost := gCost + hCost
+				fCost = gCost + hCost
 				// enqueue
 				queue.Push(Edge{to, fCost})
 				// memorizing the parent vertex for building path
