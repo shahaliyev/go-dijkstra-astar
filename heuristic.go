@@ -32,7 +32,7 @@ func heuristic(start, finish int) float64 {
 
 	// normalizes euclidean distance to achieve better efficiency
 	// for the test case, any number above 0.33 leads to suboptimal solutions
-	const normalize = 0.33
+	var normalize = 330.0 / CELLSIZE
 
 	// getting cell numbers from graph
 	startCell := vertexGraph[start]
